@@ -19,6 +19,8 @@ class UserStorageManager
 
     public var gameId: Int = 2352106
 
+    public var rowNamesArr: [String] = ["Support cache", "Updates frequency", "Game ID", "Show Game"]
+
     private let defaults = UserDefaults.standard
 
 
@@ -41,14 +43,31 @@ class UserStorageManager
         let cacheSwitchVal: Bool = self.defaults.bool(forKey: "cacheSwitch")
         self.isCacheSupported = cacheSwitchVal
 
+        guard let rows: [String] = self.defaults.array(forKey: "rows") as? [String] else
+        {
+            return
+        }
+
+        self.rowNamesArr = rows
 
     }
 
 
-    public func saveToUserDefaults(isCacheSupported: Bool, values: [Int])
+    public func saveToUserDefaults(isCacheSupported: Bool, values: [Int], rows: [String])
     {
+        print("save was called with \(rows)")
         defaults.set(values, forKey: "values")
         defaults.set(isCacheSupported, forKey: "cacheSwitch")
+        defaults.set(rows, forKey: "rows")
+
+        self.isCacheSupported = isCacheSupported
+        self.rowNamesArr = rows
+        self.cachePeriod = values[0]
+        self.updateFrequency = values[1]
+        self.gameId = values[2]
+
+        print("Saved!")
+        print("Values are now \(rowNamesArr.description) \t ")
     }
 
 

@@ -4,16 +4,10 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09656149-012d-4bf0-b7f6-ca868d3a7e3d" name="Default Changelist" comment="">
+    <list default="true" id="09656149-012d-4bf0-b7f6-ca868d3a7e3d" name="Default Changelist" comment="ui update works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1.xcodeproj/project.xcworkspace/xcuserdata/scores.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1.xcodeproj/project.xcworkspace/xcuserdata/scores.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Controllers/GameViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Controllers/GameViewController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exercise8PART1/Controllers/ViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Controllers/ViewController.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameCacheManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameCacheManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameData.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameData.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameDataManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameDataManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameDecoder.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameDecoder.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameLoader.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameLoader.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/UserStorageManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/UserStorageManager.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +66,16 @@
       <workItem from="1611053181050" duration="300000" />
       <workItem from="1611053534371" duration="45848000" />
       <workItem from="1611214552613" duration="359000" />
-      <workItem from="1611214999880" duration="4780000" />
+      <workItem from="1611214999880" duration="7822000" />
     </task>
+    <task id="LOCAL-00001" summary="ui update works">
+      <created>1611220079891</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1611220079891</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,6 +92,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ui update works" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui update works" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

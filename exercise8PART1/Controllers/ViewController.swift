@@ -12,7 +12,7 @@ class ViewController: UIViewController
 
     let tableView = UITableView()
 
-    var rowNamesArr: [String] = ["Support cache", "Updates frequency", "Game ID", "Show Game"]
+    var rowNamesArr: [String] = []
 
     var values: [Int] = []
 
@@ -59,13 +59,15 @@ class ViewController: UIViewController
     {
         self.userStorageManager.loadFromUserDefaults()
         self.updateValuesArrayAndCacheToggle()
+        print(values.description)
+        print(rowNamesArr.description)
 
     }
 
 
     @objc func handleTerminationOrBackground()
     {
-        self.userStorageManager.saveToUserDefaults(isCacheSupported: cacheSwitch, values: values)
+        self.userStorageManager.saveToUserDefaults(isCacheSupported: cacheSwitch, values: values, rows: rowNamesArr)
 
     }
 
@@ -73,7 +75,9 @@ class ViewController: UIViewController
     func updateValuesArrayAndCacheToggle()
     {
         self.values = [userStorageManager.cachePeriod, userStorageManager.updateFrequency, userStorageManager.gameId]
+        self.rowNamesArr = userStorageManager.rowNamesArr
         self.cacheSwitch = userStorageManager.isCacheSupported
+
     }
 
 
@@ -197,8 +201,10 @@ extension ViewController: UITableViewDataSource
         {
             let newIndexPath: IndexPath = IndexPath(row: 1, section: 0)
             self.rowNamesArr.insert("Cache validity period", at: 1)
+            print(rowNamesArr.description)
             self.tableView.insertRows(at: [newIndexPath], with: .automatic)
             self.cacheSwitch = true
+            self.userStorageManager.saveToUserDefaults(isCacheSupported: self.cacheSwitch, values: values, rows: rowNamesArr)
         }
         else
         {
@@ -220,7 +226,7 @@ extension ViewController: UITextFieldDelegate
         {
             self.values[textField.tag] = Int(text)!
         }
-        self.userStorageManager.saveToUserDefaults(isCacheSupported: cacheSwitch, values: values)
+        self.userStorageManager.saveToUserDefaults(isCacheSupported: cacheSwitch, values: values, rows: rowNamesArr)
 
     }
 
@@ -229,7 +235,7 @@ extension ViewController: UITextFieldDelegate
     {
         textField.endEditing(true)
         print(textField.text!)
-        self.userStorageManager.saveToUserDefaults(isCacheSupported: cacheSwitch, values: values)
+        self.userStorageManager.saveToUserDefaults(isCacheSupported: cacheSwitch, values: values, rows: rowNamesArr)
         return true
     }
 
