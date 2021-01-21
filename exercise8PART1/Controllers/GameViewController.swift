@@ -18,20 +18,32 @@ class GameViewController: UIViewController
 
     let initialValues: [Int]
 
+    /*****************************/
 
+    let boxView: UIView = UIView()
+    let competitionLabel: UILabel = UILabel()
+    let homeLabel: UILabel = UILabel()
+    let awayLabel: UILabel = UILabel()
+    let gameStartTimeLabel: UILabel = UILabel()
+    let gameCurrentTime: UILabel = UILabel()
+
+    var homeScoreViewAndLabel: UIView = UIView()
+    var awayScoreViewAndLabel: UIView = UIView()
+
+    let homeScoreLabel: UILabel = UILabel()
+    let awayScoreLabel: UILabel = UILabel()
 
 
     init(supportCacheValue: Bool, values: [Int])
     {
 
-        //TODO drill down the support cache value to the game Data Manager
         self.initialValues = values
 
-        gameManager = GameDataManager(isSupportCache: supportCacheValue,cachePeriod: values[0], updateFrequency: values[1], gameId: values[2])
-
+        gameManager = GameDataManager(isSupportCache: supportCacheValue, cachePeriod: values[0], updateFrequency: values[1], gameId: values[2])
 
         super.init(nibName: nil, bundle: nil)
 
+        creatUI()
     }
 
 
@@ -45,7 +57,7 @@ class GameViewController: UIViewController
     {
         super.loadView()
         view.backgroundColor = .white
-        creatUI()
+//        creatUI()
 
     }
 
@@ -110,7 +122,7 @@ class GameViewController: UIViewController
 
     func creatUI()
     {
-        let boxView: UIView = UIView()
+
         boxView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(boxView)
         boxView.backgroundColor = .lightGray
@@ -122,25 +134,19 @@ class GameViewController: UIViewController
         boxView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         boxView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
 
-        let competitionLabel: UILabel = UILabel()
+
         boxView.addSubview(competitionLabel)
         competitionLabel.translatesAutoresizingMaskIntoConstraints = false
         competitionLabel.text = "TEXTTEXT"
         competitionLabel.centerXAnchor.constraint(equalTo: boxView.centerXAnchor).isActive = true
         competitionLabel.topAnchor.constraint(equalTo: boxView.topAnchor, constant: 10).isActive = true
-        self.objectsDictionary["competitionLabel"] = competitionLabel
 
 
-        let homeLabel: UILabel = UILabel()
-        let awayLabel: UILabel = UILabel()
         homeLabel.translatesAutoresizingMaskIntoConstraints = false
         awayLabel.translatesAutoresizingMaskIntoConstraints = false
 
         boxView.addSubview(homeLabel)
         boxView.addSubview(awayLabel)
-
-        self.objectsDictionary["homeLabel"] = homeLabel
-        self.objectsDictionary["awayLabel"] = awayLabel
 
 
         homeLabel.text = "HOMEHOME"
@@ -151,17 +157,14 @@ class GameViewController: UIViewController
         awayLabel.leadingAnchor.constraint(equalTo: boxView.leadingAnchor, constant: 10).isActive = true
         awayLabel.topAnchor.constraint(equalTo: homeLabel.bottomAnchor, constant: 40).isActive = true
 
-        let gameStartTimeLabel: UILabel = UILabel()
         gameStartTimeLabel.text = "16:40"
         gameStartTimeLabel.font = .systemFont(ofSize: 22)
         boxView.addSubview(gameStartTimeLabel)
         gameStartTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         gameStartTimeLabel.centerXAnchor.constraint(equalTo: boxView.centerXAnchor).isActive = true
         gameStartTimeLabel.centerYAnchor.constraint(equalTo: boxView.centerYAnchor, constant: -50).isActive = true
-        self.objectsDictionary["gameStartTimeLabel"] = gameStartTimeLabel
 
 
-        let gameCurrentTime: UILabel = UILabel()
         gameCurrentTime.text = "20"
         boxView.addSubview(gameCurrentTime)
         gameCurrentTime.translatesAutoresizingMaskIntoConstraints = false
@@ -169,14 +172,35 @@ class GameViewController: UIViewController
         gameCurrentTime.centerXAnchor.constraint(equalTo: boxView.centerXAnchor).isActive = true
         gameCurrentTime.centerYAnchor.constraint(equalTo: gameStartTimeLabel.centerYAnchor, constant: 30).isActive = true
 
-        self.objectsDictionary["gameCurrentTime"] = gameCurrentTime
-
-
-        let homeScoreViewAndLabel: UIView = createScoreView()
-        let awayScoreViewAndLabel: UIView = createScoreView()
 
         boxView.addSubview(homeScoreViewAndLabel)
         boxView.addSubview(awayScoreViewAndLabel)
+
+
+        homeScoreViewAndLabel.backgroundColor = .black
+        homeScoreViewAndLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        homeScoreViewAndLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        homeScoreViewAndLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        homeScoreViewAndLabel.layer.cornerRadius = 10
+
+        homeScoreViewAndLabel.addSubview(homeScoreLabel)
+        homeScoreLabel.text = "1"
+        homeScoreLabel.centerWith(to: homeScoreViewAndLabel)
+        homeScoreLabel.textColor = .white
+
+
+        awayScoreViewAndLabel.backgroundColor = .black
+        awayScoreViewAndLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        awayScoreViewAndLabel.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        awayScoreViewAndLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        awayScoreViewAndLabel.layer.cornerRadius = 10
+
+        awayScoreViewAndLabel.addSubview(awayScoreLabel)
+        awayScoreLabel.text = "1"
+        awayScoreLabel.centerWith(to: awayScoreViewAndLabel)
+        awayScoreLabel.textColor = .white
 
 
         homeScoreViewAndLabel.centerYAnchor.constraint(equalTo: homeLabel.centerYAnchor).isActive = true
@@ -185,42 +209,6 @@ class GameViewController: UIViewController
         awayScoreViewAndLabel.centerYAnchor.constraint(equalTo: awayLabel.centerYAnchor).isActive = true
         awayScoreViewAndLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -80).isActive = true
 
-
-        let labelHome: Array<UIView> = homeScoreViewAndLabel.subviews.filter
-        {
-            $0 is UILabel
-        }
-        let labelAway: Array<UIView> = awayScoreViewAndLabel.subviews.filter
-        {
-            $0 is UILabel
-        }
-        self.objectsDictionary["awayScoreLabel"] = (labelHome.first as! UILabel)
-        self.objectsDictionary["homeScoreLabel"] = (labelAway.first as! UILabel)
-
-
-    }
-
-
-    func createScoreView() -> UIView
-    {
-
-        let scoreView: UIView = UIView()
-        scoreView.backgroundColor = .black
-
-        scoreView.translatesAutoresizingMaskIntoConstraints = false
-
-        scoreView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        scoreView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        scoreView.layer.cornerRadius = 10
-
-
-        let scoreLabel: UILabel = UILabel()
-        scoreView.addSubview(scoreLabel)
-        scoreLabel.text = "1"
-        scoreLabel.centerWith(to: scoreView)
-        scoreLabel.textColor = .white
-
-        return scoreView
 
     }
 
@@ -249,6 +237,7 @@ class GameViewController: UIViewController
                                        "Name": "Wigry Sualki"
                                      }
                                    ],
+                                    
                                    "Scrs": [
                                      3.0,
                                      1.0,
@@ -294,7 +283,9 @@ extension GameViewController: GameDataManagerDelegate
     func gameDataManager(_ didLoadData: GameData, _ manager: GameDataManager)
     {
         self.gamaData = didLoadData
-        self.updateUIWithData()
+        self.updateGameUIWithGameData()
+        self.updateCompetitionsUIWithGameData()
+
     }
 
 
@@ -304,51 +295,76 @@ extension GameViewController: GameDataManagerDelegate
     }
 
 
-    func updateUIWithData()
+    func updateGameUIWithGameData()
     {
-        guard let competitionLabel: UILabel = self.objectsDictionary["competitionLabel"],
-              let homeLabel: UILabel = self.objectsDictionary["homeLabel"],
-              let awayLabel: UILabel = self.objectsDictionary["awayLabel"],
-              let gameStartTimeLabel: UILabel = self.objectsDictionary["gameStartTimeLabel"],
-              let gameCurrentTime: UILabel = self.objectsDictionary["gameCurrentTime"],
-              let homeScoreLabel: UILabel = self.objectsDictionary["homeScoreLabel"],
-              let awayScoreLabel: UILabel = self.objectsDictionary["awayScoreLabel"]
-                else
-        {
-
-            return
-        }
 
 
         DispatchQueue.main.async
-        {
-
-            competitionLabel.text = self.gamaData?.Competitions.first?.Name
-
-            homeLabel.text = self.gamaData?.Games.first?.Comps.first?.Name
-
-            awayLabel.text = self.gamaData?.Games.first?.Comps[1].Name
-
-            if let stime = self.gamaData?.Games.first?.STime
-            {
-                gameStartTimeLabel.text = self.getStartTimeFrom_STime(from: stime)
-            }
+        { [self] in
 
 
-            guard let homeScore: Double = self.gamaData?.Games.first?.Scrs.first,
-                  let awayScore: Double = self.gamaData?.Games.first?.Scrs[1] else
+            guard let game: Game = gamaData?.games.first else
             {
                 return
             }
 
-            homeScoreLabel.text = homeScore < 0 ? "0" : "\(Int(homeScore))"
 
-            awayScoreLabel.text = awayScore < 0 ? "0" : "\(Int(awayScore))"
+            if game.comps.count > 1
+            {
 
-            gameCurrentTime.text = self.gamaData?.Games.first?.GTD
+                homeLabel.text = gamaData?.games.first?.comps.first?.name
+
+                awayLabel.text = self.gamaData?.games.first?.comps[1].name
+            }
+
+
+            if game.stime != "noValue"
+            {
+                gameStartTimeLabel.text = self.getStartTimeFrom_STime(from: game.stime)
+            }
+
+
+            if game.scrs.count > 1
+            {
+
+                let homeScore = game.scrs[0]
+                let awayScore = game.scrs[1]
+
+                homeScoreLabel.text = homeScore < 0 ? "0" : "\(Int(homeScore))"
+
+                awayScoreLabel.text = awayScore < 0 ? "0" : "\(Int(awayScore))"
+            }
+
+            if game.gtd != "noGtd"
+            {
+                gameCurrentTime.text = game.gtd
+            }
+
 
         }
 
+    }
+
+
+    func updateCompetitionsUIWithGameData()
+    {
+        DispatchQueue.main.async
+        { [self] in
+
+            guard let competition: [Competition] = gamaData?.competitions else
+            {
+                return
+            }
+
+            if let competitionName = competition.first?.name
+            {
+                if competitionName != "noName"
+                {
+                    competitionLabel.text = competitionName
+                }
+            }
+
+        }
     }
 
 

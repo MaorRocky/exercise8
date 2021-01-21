@@ -16,6 +16,7 @@ class GameCacheManager
 
     private init()
     {
+//        deleteCache()
         loadGameDataFromCache()
     }
 
@@ -51,6 +52,7 @@ class GameCacheManager
 
         // 3
 
+
         let jsonData: Data = try! JSONEncoder().encode(gameData)
         let jsonString = String(data: jsonData, encoding: .utf8)!
 
@@ -66,12 +68,14 @@ class GameCacheManager
         {
             print("Could not save. \(error), \(error.userInfo)")
         }
+
+        print("GameCacheManager: Saved to cache \(gameData)")
     }
 
 
     func loadGameDataFromCache()
     {
-//1
+        //1
         guard let appDelegate =
         UIApplication.shared.delegate as? AppDelegate else
         {
@@ -90,13 +94,14 @@ class GameCacheManager
         do
         {
             let cachedData: [NSManagedObject] = try managedContext.fetch(fetchRequest)
-            if let jsonString: String = cachedData.first?.value(forKey: "game") as? String
+            if let jsonString: String = cachedData.last?.value(forKey: "game") as? String
             {
                 let gameJson: Data = jsonString.data(using: .utf8)!
                 let gameDecoder: GameDecoder = GameDecoder(jsonData: gameJson)
                 self.loadedGameData = gameDecoder.decode()
                 print("from cache LastUpdateID: \(self.loadedGameData?.LastUpdateID ?? -1)")
             }
+
         }
         catch let error as NSError
         {
@@ -106,9 +111,74 @@ class GameCacheManager
     }
 
 
-    func deleteData()
+    public func printInCache()
     {
 
+        //1
+        guard let appDelegate =
+        UIApplication.shared.delegate as? AppDelegate else
+        {
+            return
+        }
 
+        let managedContext =
+                appDelegate.persistentContainer.viewContext
+
+        //2
+        let fetchRequest =
+                NSFetchRequest<NSManagedObject>(entityName: "GameDataModel")
+
+
+        //3
+        do
+        {
+            let cachedData: [NSManagedObject] = try managedContext.fetch(fetchRequest)
+            for item: NSManagedObject in cachedData
+            {
+                print(item)
+            }
+
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+
+
+    }
+
+
+    private func deleteCache()
+    {
+        //1
+        guard let appDelegate =
+        UIApplication.shared.delegate as? AppDelegate else
+        {
+            return
+        }
+
+        let managedContext =
+                appDelegate.persistentContainer.viewContext
+
+        //2
+        let fetchRequest =
+                NSFetchRequest<NSManagedObject>(entityName: "GameDataModel")
+
+
+        //3
+        do
+        {
+            let cachedData: [NSManagedObject] = try managedContext.fetch(fetchRequest)
+            for item: NSManagedObject in cachedData
+            {
+                managedContext.delete(item)
+            }
+            try managedContext.save()
+
+        }
+        catch let error as NSError
+        {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
 }

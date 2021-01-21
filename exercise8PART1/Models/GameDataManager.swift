@@ -51,12 +51,13 @@ class GameDataManager
         {
             self.gameData = gameData
             self.delegate?.gameDataManager(gameData, self)
-            self.lastUpdateID = gameData.LastUpdateID
+            self.lastUpdateID = gameData.lastUpdateId
 
             print("game data loaded from cache: \(gameData) ")
         }
         else
         {
+            print("No game in cache!\n")
 
             let gameLoader: GameLoader = GameLoader(gameID: self.gameId, lastUpdateID: nil)
 
@@ -92,17 +93,19 @@ class GameDataManager
 
     @objc private func fireUpdate()
     {
-
+// TODO since this closure does not work thats why the cacche and the ui do not get update.
+        print("fireUpdate!")
         let gameLoader: GameLoader = GameLoader(gameID: self.gameId, lastUpdateID: "\(self.lastUpdateID)")
+//        let gameLoader: GameLoader = GameLoader(gameID: self.gameId, lastUpdateID: nil)
 
         gameLoader.load
         { (data: GameData?, error: Error?) in
             if let safeData: GameData = data
             {
+
                 self.gameData = safeData
                 self.updateAndNotifyDelegate()
             }
-
         }
     }
 
@@ -115,7 +118,7 @@ class GameDataManager
         }
 
         self.gameCacheManager.saveGameDataInCache(gameData: safeData)
-        print("cached!!")
+        print("cached game")
     }
 
 
@@ -130,11 +133,12 @@ class GameDataManager
     {
         guard let safeData: GameData = self.gameData else
         {
+            print("ERROR in gameData from updateAndNotifyDelegate")
             return
         }
 
         self.delegate?.gameDataManager(safeData, self)
-        self.lastUpdateID = safeData.LastUpdateID
+        self.lastUpdateID = safeData.lastUpdateId
         self.gameCacheManager.loadedGameData = safeData
 
     }

@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController
 {
 
-
     let tableView = UITableView()
 
     var rowNamesArr: [String] = ["Support cache", "Updates frequency", "Game ID", "Show Game"]
@@ -148,6 +147,7 @@ extension ViewController: UITableViewDataSource
         {
             let mySwitch: UISwitch = UISwitch()
             mySwitch.addTarget(self, action: #selector(didChangeSwitch(_:)), for: .valueChanged)
+            mySwitch.setOn(self.cacheSwitch, animated: false)
 
             cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.accessoryView = mySwitch

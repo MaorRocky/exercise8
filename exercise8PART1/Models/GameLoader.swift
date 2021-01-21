@@ -10,8 +10,8 @@ import Foundation
 class GameLoader
 {
 
-
     let gameId: Int
+
     let lastUpdateId: String?
 
     var gameURL: String = "https://qa.365scores.com/Data/Games/GameCenter/?games=$game_id&lang=1&AppType=1&tz=15&theme=dark&uc=1&uid=$update_id"
@@ -19,12 +19,12 @@ class GameLoader
 
     init(gameID: Int = 2352106, lastUpdateID: String?)
     {
-        print("created GameLoader with \(gameID) and \(lastUpdateID ?? "nil")")
+        print("created GameLoader with \(gameID) and \(lastUpdateID ?? "nil")ֿ \n")
         self.gameId = gameID
         self.lastUpdateId = lastUpdateID
         gameURL = gameURL.replacingOccurrences(of: "$game_id", with: "\(gameID)")
         gameURL = gameURL.replacingOccurrences(of: "$update_id", with: lastUpdateID ?? "")
-        print(gameURL)
+//        print(gameURL)
     }
 
 
@@ -32,6 +32,7 @@ class GameLoader
      method will be called and the result will be returned via the “completion” closure*/
     func load(completion: @escaping (GameData?, Error?) -> Void)
     {
+
         let session = URLSession(configuration: .default)
         // the string is hard coded hence im using "!"
         let url = URL(string: self.gameURL)!
@@ -56,9 +57,11 @@ class GameLoader
                 print("Wrong MIME type!")
                 return
             }
-            //data is not nil
+            //data is not nil hence im using "!"
             if let json: GameData = self.parseJSON(data!)
             {
+
+                //TODO THSI DO NOT HAPPEN
                 print("decoded json and got \(json)")
                 completion(json, error)
 
@@ -68,7 +71,7 @@ class GameLoader
         task.resume()
     }
 
-
+    // this function receives a Data object and uses the GameDecoder to decode it into a GameData class
     func parseJSON(_ gameData: Data) -> GameData?
     {
         let gameDecoder: GameDecoder = GameDecoder(jsonData: gameData)

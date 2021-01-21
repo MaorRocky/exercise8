@@ -23,6 +23,10 @@ class GameDecoder
     func decode() -> GameData?
     {
 
+        print("decoder got:")
+        print(String(data: self.data, encoding: .utf8)!)
+
+
         let decoder = JSONDecoder()
         do
         {
@@ -32,7 +36,7 @@ class GameDecoder
         catch
         {
             print("Error while decoding \(error.localizedDescription) ")
-            print(String(data: self.data, encoding: .utf8)!)
+            print("\n")
             return nil
         }
     }
