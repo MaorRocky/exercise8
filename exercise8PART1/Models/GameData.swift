@@ -80,9 +80,9 @@ struct Game: Codable
 
 struct GameData: Codable
 {
-    let LastUpdateID: Int?
-    let Games: [Game]?
-    let Competitions: [Competition]?
+    var LastUpdateID: Int?
+    var Games: [Game]?
+    var Competitions: [Competition]?
 
     var lastUpdateId: Int
     {

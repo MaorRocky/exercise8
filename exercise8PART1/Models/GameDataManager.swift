@@ -45,6 +45,7 @@ class GameDataManager
     }
 
 
+    // this function will be called from GAME view controller viewDidLoad
     public func loadData()
     {
         if let gameData: GameData = self.gameCacheManager.loadedGameData
@@ -93,7 +94,7 @@ class GameDataManager
 
     @objc private func fireUpdate()
     {
-// TODO since this closure does not work thats why the cacche and the ui do not get update.
+
         print("fireUpdate!")
         let gameLoader: GameLoader = GameLoader(gameID: self.gameId, lastUpdateID: "\(self.lastUpdateID)")
 //        let gameLoader: GameLoader = GameLoader(gameID: self.gameId, lastUpdateID: nil)
@@ -103,7 +104,25 @@ class GameDataManager
             if let safeData: GameData = data
             {
 
-                self.gameData = safeData
+
+                //TODO merge the new data into self.gameData
+
+
+                if let game: Game = safeData.games.first
+                {
+                    self.gameData?.Games = [game]
+                }
+
+                if safeData.lastUpdateId != 0
+                {
+                    self.gameData?.LastUpdateID = safeData.lastUpdateId
+                }
+
+                if let competition = safeData.competitions.first
+                {
+                    self.gameData?.Competitions = [competition]
+                }
+//                self.gameData = safeData
                 self.updateAndNotifyDelegate()
             }
         }

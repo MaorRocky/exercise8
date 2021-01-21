@@ -61,7 +61,7 @@ class GameLoader
             if let json: GameData = self.parseJSON(data!)
             {
 
-                //TODO THSI DO NOT HAPPEN
+
                 print("decoded json and got \(json)")
                 completion(json, error)
 

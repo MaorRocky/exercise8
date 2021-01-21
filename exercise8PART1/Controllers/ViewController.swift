@@ -12,10 +12,13 @@ class ViewController: UIViewController
 
     let tableView = UITableView()
 
+    //the text for each row.
     var rowNamesArr: [String] = []
 
+    // this array will hold the values of the text fields.
     var values: [Int] = []
 
+    // tag we have 3 text fields in the table view giving each text field a tag will help me updating its values
     let tagDict: [String: Int] = ["Updates frequency": 1, "Game ID": 2, "Cache validity period": 0]
 
     var cacheSwitch: Bool = false
