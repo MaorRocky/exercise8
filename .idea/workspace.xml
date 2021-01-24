@@ -4,15 +4,8 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09656149-012d-4bf0-b7f6-ca868d3a7e3d" name="Default Changelist" comment="cache works">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1.xcodeproj/project.xcworkspace/xcuserdata/scores.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1.xcodeproj/project.xcworkspace/xcuserdata/scores.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameCacheManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameCacheManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameData.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameData.swift" afterDir="false" />
+    <list default="true" id="09656149-012d-4bf0-b7f6-ca868d3a7e3d" name="Default Changelist" comment="finished">
       <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameDataManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameDataManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/GameLoader.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/GameLoader.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/Models/UserStorageManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/Models/UserStorageManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exercise8PART1/exercise8PART1.xcdatamodeld/exercise8PART1.xcdatamodel/contents" beforeDir="false" afterPath="$PROJECT_DIR$/exercise8PART1/exercise8PART1.xcdatamodeld/exercise8PART1.xcdatamodel/contents" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +65,7 @@
       <workItem from="1611053534371" duration="45848000" />
       <workItem from="1611214552613" duration="359000" />
       <workItem from="1611214999880" duration="17672000" />
-      <workItem from="1611470926007" duration="18257000" />
+      <workItem from="1611470926007" duration="19219000" />
     </task>
     <task id="LOCAL-00001" summary="ui update works">
       <created>1611220079891</created>
@@ -95,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611225347824</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="finished">
+      <created>1611491319268</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611491319268</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,7 +117,8 @@
     <MESSAGE value="ui update works" />
     <MESSAGE value="tablewView works" />
     <MESSAGE value="cache works" />
-    <option name="LAST_COMMIT_MESSAGE" value="cache works" />
+    <MESSAGE value="finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

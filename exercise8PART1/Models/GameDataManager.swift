@@ -104,37 +104,48 @@ class GameDataManager
             if let safeData: GameData = data
             {
 
-                if var game: Game = safeData.games.first
+                if let game: Game = safeData.games.first
                 {
-
-                    if game.comps.count == 0
+                    guard var currentGameData = self.gameData?.games.first else
                     {
-                        game.Comps = self.gameData?.games.first?.comps ?? []
+                        return
+                    }
+
+                    if game.comps.count != 0
+                    {
+                        currentGameData.Comps = game.comps
                     }
 
 
-                    if game.scrs.count == 0
+                    if game.scrs.count != 0
                     {
-                        game.Scrs = self.gameData?.games.first?.scrs ?? []
+                        currentGameData.Scrs = game.scrs
                     }
 
-                    if game.stime == "noValue"
+                    if game.stime != "noValue"
                     {
-                        game.STime = self.gameData?.games.first?.stime
+                        currentGameData.STime = game.stime
                     }
 
-                    if game.comp == -1
+                    if game.comp != -1
                     {
-                        game.Comp = self.gameData?.games.first?.comp
+                        currentGameData.Comp = game.comp
                     }
 
-                    if game.gtd == "noGtd"
+                    if game.gtd != "noGtd"
                     {
-                        game.GTD = self.gameData?.games.first?.gtd
+                        currentGameData.GTD = game.gtd
                     }
 
-                    self.gameData?.Games = [game]
+                    if game.identifier != -1
+                    {
+                        currentGameData.ID = game.identifier
+                    }
 
+                    if game.gt != 0
+                    {
+                        currentGameData.GT = game.gt
+                    }
 
                 }
 
