@@ -3,8 +3,8 @@ import Foundation
 
 struct Competitor: Codable
 {
-    let ID: Int?
-    let Name: String?
+    var ID: Int?
+    var Name: String?
 
     var identifier: Int
     {
@@ -20,8 +20,8 @@ struct Competitor: Codable
 
 struct Competition: Codable
 {
-    let Name: String?
-    let ID: Int?
+    var Name: String?
+    var ID: Int?
 
     var identifier: Int
     {
@@ -37,14 +37,14 @@ struct Competition: Codable
 
 struct Game: Codable
 {
-    let ID: Int?
-    let Comp: Int?
-    let Active: Bool?
-    let GT: Double?
-    let Scrs: [Double]?
-    let GTD: String?
-    let STime: String?
-    let Comps: [Competitor]?
+    var ID: Int?
+    var Comp: Int?
+    var Active: Bool?
+    var GT: Double?
+    var Scrs: [Double]?
+    var GTD: String?
+    var STime: String?
+    var Comps: [Competitor]?
 
     var identifier: Int
     {
@@ -74,6 +74,14 @@ struct Game: Codable
     var comps: [Competitor]
     {
         return Comps ?? []
+    }
+
+    var active : Bool{
+        return Active ?? false
+    }
+
+    var gt : Double {
+        return GT ?? 0
     }
 
 }

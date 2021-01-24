@@ -19,7 +19,7 @@ class GameLoader
 
     init(gameID: Int = 2352106, lastUpdateID: String?)
     {
-        print("created GameLoader with \(gameID) and \(lastUpdateID ?? "nil")ֿ \n")
+//        print("created GameLoader with \(gameID) and \(lastUpdateID ?? "nil")ֿ")
         self.gameId = gameID
         self.lastUpdateId = lastUpdateID
         gameURL = gameURL.replacingOccurrences(of: "$game_id", with: "\(gameID)")

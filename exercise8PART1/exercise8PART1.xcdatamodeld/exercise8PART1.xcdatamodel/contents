@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="GameDataModel" representedClassName="GameDataModel" syncable="YES" codeGenerationType="class">
-        <attribute name="game" optional="YES" attributeType="String"/>
+    <entity name="CD_Competition" representedClassName="CD_Competition" syncable="YES" codeGenerationType="class">
+        <attribute name="cd_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cd_name" optional="YES" attributeType="String"/>
+        <relationship name="toGameData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CD_GameData" inverseName="toCompetitions" inverseEntity="CD_GameData"/>
+    </entity>
+    <entity name="CD_Competitor" representedClassName="CD_Competitor" syncable="YES" codeGenerationType="class">
+        <attribute name="cd_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cd_name" optional="YES" attributeType="String"/>
+        <relationship name="toGame" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CD_Game" inverseName="toCompetitors" inverseEntity="CD_Game"/>
+    </entity>
+    <entity name="CD_Game" representedClassName="CD_Game" syncable="YES" codeGenerationType="class">
+        <attribute name="cd_active" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="cd_comp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cd_gt" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="cd_gtd" optional="YES" attributeType="String"/>
+        <attribute name="cd_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cd_scrs" optional="YES" attributeType="Transformable" customClassName="[Double]"/>
+        <attribute name="cd_sTime" optional="YES" attributeType="String"/>
+        <relationship name="toCompetitors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CD_Competitor" inverseName="toGame" inverseEntity="CD_Competitor"/>
+        <relationship name="toGameDataModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CD_GameData" inverseName="toGames" inverseEntity="CD_GameData"/>
+    </entity>
+    <entity name="CD_GameData" representedClassName="CD_GameData" syncable="YES" codeGenerationType="class">
+        <attribute name="cd_lastUpdateID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="toCompetitions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CD_Competition" inverseName="toGameData" inverseEntity="CD_Competition"/>
+        <relationship name="toGames" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CD_Game" inverseName="toGameDataModel" inverseEntity="CD_Game"/>
     </entity>
     <elements>
-        <element name="GameDataModel" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="CD_GameData" positionX="-16790.84350585938" positionY="1628.467468261719" width="128" height="88"/>
+        <element name="CD_Game" positionX="-16419.19165039062" positionY="1462.016967773438" width="128" height="178"/>
+        <element name="CD_Competitor" positionX="-16254" positionY="1656" width="128" height="88"/>
+        <element name="CD_Competition" positionX="-16338.6708984375" positionY="1806.778747558594" width="128" height="88"/>
     </elements>
 </model>

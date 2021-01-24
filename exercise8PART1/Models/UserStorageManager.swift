@@ -10,7 +10,6 @@ class UserStorageManager
 
     public static let instance: UserStorageManager = UserStorageManager()
 
-
     public var isCacheSupported: Bool = false
 
     public var cachePeriod: Int = 30

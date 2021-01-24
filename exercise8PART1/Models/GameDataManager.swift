@@ -98,31 +98,67 @@ class GameDataManager
         print("fireUpdate!")
         let gameLoader: GameLoader = GameLoader(gameID: self.gameId, lastUpdateID: "\(self.lastUpdateID)")
 //        let gameLoader: GameLoader = GameLoader(gameID: self.gameId, lastUpdateID: nil)
-
+//TODO BUG!
         gameLoader.load
-        { (data: GameData?, error: Error?) in
+        { [self] (data: GameData?, error: Error?) in
             if let safeData: GameData = data
             {
 
-
-                //TODO merge the new data into self.gameData
-
-
-                if let game: Game = safeData.games.first
+                if var game: Game = safeData.games.first
                 {
+
+                    if game.comps.count == 0
+                    {
+                        game.Comps = self.gameData?.games.first?.comps ?? []
+                    }
+
+
+                    if game.scrs.count == 0
+                    {
+                        game.Scrs = self.gameData?.games.first?.scrs ?? []
+                    }
+
+                    if game.stime == "noValue"
+                    {
+                        game.STime = self.gameData?.games.first?.stime
+                    }
+
+                    if game.comp == -1
+                    {
+                        game.Comp = self.gameData?.games.first?.comp
+                    }
+
+                    if game.gtd == "noGtd"
+                    {
+                        game.GTD = self.gameData?.games.first?.gtd
+                    }
+
                     self.gameData?.Games = [game]
+
+
                 }
+
 
                 if safeData.lastUpdateId != 0
                 {
+
                     self.gameData?.LastUpdateID = safeData.lastUpdateId
                 }
 
                 if let competition = safeData.competitions.first
                 {
+
                     self.gameData?.Competitions = [competition]
+
                 }
+
+
 //                self.gameData = safeData
+
+                DispatchQueue.main.async
+                { [self] in
+                    print(gameData)
+                }
                 self.updateAndNotifyDelegate()
             }
         }
